@@ -1,6 +1,6 @@
 package com.jhonathan.loja3d.domain;
 
-public enum TypeUser {
+public enum TypeProduct {
     MODEL,
     MINIATURE,
     FILAMENT,
