@@ -2,7 +2,6 @@ package com.jhonathan.loja3d.controller;
 
 import com.jhonathan.loja3d.dto.ProductDTO;
 import com.jhonathan.loja3d.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/products")
 public class ProductController {
 
-    private final ProductService service;
+    private ProductService service;
 
     public ProductController(ProductService service){
         this.service = service;
@@ -36,6 +35,12 @@ public class ProductController {
     @PutMapping("/{id}")
     public ResponseEntity updateProduct(@PathVariable(value = "id") Long id, @RequestBody ProductDTO dto){
         return ResponseEntity.status(HttpStatus.OK).body(service.updateProduct(id, dto));
+    }
+
+    @PutMapping("/{id}/{add}")
+    public  ResponseEntity<Void> addCategory(@PathVariable(value = "id") Long id, @PathVariable(value = "add") Long add){
+        service.addCategory(id, add);
+        return  ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")

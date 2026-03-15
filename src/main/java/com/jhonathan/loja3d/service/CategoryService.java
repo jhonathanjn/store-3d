@@ -12,7 +12,7 @@ import java.util.List;
 public class CategoryService {
 
     //permite acesso ao banco de dados
-    private final CategoryRepository repository;
+    private CategoryRepository repository;
 
     //Contrutor
     public CategoryService(CategoryRepository repository){

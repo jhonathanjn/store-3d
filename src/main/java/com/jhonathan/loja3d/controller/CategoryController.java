@@ -3,6 +3,7 @@ package com.jhonathan.loja3d.controller;
 import com.jhonathan.loja3d.domain.Category;
 import com.jhonathan.loja3d.dto.CategoryDto;
 import com.jhonathan.loja3d.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/category")
 public class CategoryController {
 
-    private final CategoryService service;
-
-    public CategoryController(CategoryService service){
-        this.service = service;
-    }
+    @Autowired
+    private CategoryService service;
 
     @GetMapping
     public ResponseEntity<?> getAll(){

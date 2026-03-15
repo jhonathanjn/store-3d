@@ -1,5 +1,6 @@
 package com.jhonathan.loja3d.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,7 +24,7 @@ public class Category {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    @Column(nullable = false)
+    @ManyToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Product> products;
 }

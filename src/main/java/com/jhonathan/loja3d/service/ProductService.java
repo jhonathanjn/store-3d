@@ -1,35 +1,43 @@
 package com.jhonathan.loja3d.service;
 
+import com.jhonathan.loja3d.domain.Category;
 import com.jhonathan.loja3d.domain.Product;
 import com.jhonathan.loja3d.domain.TypeProduct;
 import com.jhonathan.loja3d.dto.ProductDTO;
+import com.jhonathan.loja3d.exception.ResourceNotFoundException;
+import com.jhonathan.loja3d.repository.CategoryRepository;
 import com.jhonathan.loja3d.repository.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
 
     @Autowired
-    private ProductRepository repository;
+    private ProductRepository productRepo;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     public List<Product> getAll(){
-        List<Product> products = repository.findAll();
+        List<Product> products = productRepo.findAll();
         return products;
     }
 
     public Product findById(Long id){
-        Product find = repository.findById(id)
+        Product find = productRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
         return find;
     }
 
     public Product creatProduct(ProductDTO dto){
         Product product = new Product();
+
+        Category category = categoryRepository.findById(dto.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Category not found!"));
 
         product.setName(dto.getName());
         product.setImageUrl(dto.getImageUrl());
@@ -41,12 +49,13 @@ public class ProductService {
                 TypeProduct.valueOf(dto.getType().toUpperCase())
         );
 
-        return repository.save(product);
+
+        return productRepo.save(product);
     }
 
     @Transactional
     public Product updateProduct(Long id, ProductDTO dto){
-        Product update = repository.findById(id)
+        Product update = productRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found!"));
         update.setName(dto.getName());
         update.setImageUrl(dto.getImageUrl());
@@ -54,15 +63,27 @@ public class ProductService {
         update.setPrice(dto.getPrice());
         update.setStock(dto.getStock());
 
-        return repository.save(update);
+        return productRepo.save(update);
+    }
+
+    public void addCategory(Long productId, Long categoryId){
+        Product product = productRepo.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found!"));
+
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Id not found!"));
+
+        product.getCategory().add(category);
+
+        productRepo.save(product);
     }
 
     public void deleteById(Long id){
-        Product productDeleted = repository.findById(id)
+        Product productDeleted = productRepo.findById(id)
                 .orElseThrow(() ->
                         new RuntimeException("Product not found with id: " + id)
                 );;
-        repository.delete(productDeleted);
+        productRepo.delete(productDeleted);
     }
 
 
