@@ -27,6 +27,16 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
     }
 
+    @GetMapping("/category/{id}")
+    public ResponseEntity findByCategory(@PathVariable(value = "id") Long id){
+        return ResponseEntity.status(HttpStatus.OK).body(service.findByCategory(id));
+    }
+
+    @GetMapping("/buscar")
+    public ResponseEntity findByName(@RequestParam String name){
+        return ResponseEntity.status(HttpStatus.OK).body(service.findName(name));
+    }
+
     @PostMapping
     public ResponseEntity createProduct(@RequestBody ProductDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.creatProduct(dto));
@@ -40,6 +50,12 @@ public class ProductController {
     @PutMapping("/{id}/{add}")
     public  ResponseEntity<Void> addCategory(@PathVariable(value = "id") Long id, @PathVariable(value = "add") Long add){
         service.addCategory(id, add);
+        return  ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/{id}/{add}")
+    public  ResponseEntity<Void> removeCategory(@PathVariable(value = "id") Long id, @PathVariable(value = "add") Long add){
+        service.removeCategory(id, add);
         return  ResponseEntity.noContent().build();
     }
 

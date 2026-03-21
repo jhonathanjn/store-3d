@@ -33,6 +33,14 @@ public class ProductService {
         return find;
     }
 
+    public List<Product> findByCategory(Long id){
+        return productRepo.findByCategoryId(id);
+    }
+
+    public List<Product> findName(String name){
+        return productRepo.findByNameContainingIgnoreCase(name);
+    }
+
     public Product creatProduct(ProductDTO dto){
         Product product = new Product();
 
@@ -74,6 +82,18 @@ public class ProductService {
                 .orElseThrow(() -> new ResourceNotFoundException("Id not found!"));
 
         product.getCategory().add(category);
+
+        productRepo.save(product);
+    }
+
+    public void removeCategory(Long productId, Long categoryId){
+        Product product = productRepo.findById(productId)
+                .orElseThrow(() -> new ResourceNotFoundException("Product not found!"));
+
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Id not found!"));
+
+        product.getCategory().remove(category);
 
         productRepo.save(product);
     }
