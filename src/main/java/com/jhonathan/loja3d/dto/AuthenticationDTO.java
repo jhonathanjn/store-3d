@@ -1,4 +1,4 @@
-package com.jhonathan.loja3d.domain;
+package com.jhonathan.loja3d.dto;
 
 public record AuthenticationDTO(
         String email,

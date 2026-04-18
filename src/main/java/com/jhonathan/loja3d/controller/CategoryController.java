@@ -1,6 +1,5 @@
 package com.jhonathan.loja3d.controller;
 
-import com.jhonathan.loja3d.domain.Category;
 import com.jhonathan.loja3d.dto.CategoryDto;
 import com.jhonathan.loja3d.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

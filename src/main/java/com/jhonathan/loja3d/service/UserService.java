@@ -1,9 +1,7 @@
 package com.jhonathan.loja3d.service;
 
-import com.jhonathan.loja3d.domain.Category;
-import com.jhonathan.loja3d.domain.Product;
-import com.jhonathan.loja3d.domain.User;
-import com.jhonathan.loja3d.domain.UserRole;
+import com.jhonathan.loja3d.domain.Auth.User;
+import com.jhonathan.loja3d.domain.Auth.UserRole;
 import com.jhonathan.loja3d.dto.UserDTO;
 import com.jhonathan.loja3d.exception.ResourceNotFoundException;
 import com.jhonathan.loja3d.repository.UserRepository;

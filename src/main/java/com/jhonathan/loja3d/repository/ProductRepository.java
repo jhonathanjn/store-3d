@@ -1,6 +1,6 @@
 package com.jhonathan.loja3d.repository;
 
-import com.jhonathan.loja3d.domain.Product;
+import com.jhonathan.loja3d.domain.Product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

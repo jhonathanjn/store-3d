@@ -1,9 +1,9 @@
 package com.jhonathan.loja3d.controller;
 
-import com.jhonathan.loja3d.domain.AuthenticationDTO;
-import com.jhonathan.loja3d.domain.LoginResponseDTO;
-import com.jhonathan.loja3d.domain.RegisterDTO;
-import com.jhonathan.loja3d.domain.User;
+import com.jhonathan.loja3d.dto.AuthenticationDTO;
+import com.jhonathan.loja3d.dto.LoginResponseDTO;
+import com.jhonathan.loja3d.dto.RegisterDTO;
+import com.jhonathan.loja3d.domain.Auth.User;
 import com.jhonathan.loja3d.infra.security.TokenService;
 import com.jhonathan.loja3d.repository.UserRepository;
 import jakarta.validation.Valid;

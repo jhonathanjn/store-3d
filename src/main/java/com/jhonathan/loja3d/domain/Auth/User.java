@@ -1,5 +1,7 @@
-package com.jhonathan.loja3d.domain;
+package com.jhonathan.loja3d.domain.Auth;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jhonathan.loja3d.domain.Sale.Cart;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -40,6 +42,10 @@ public class User implements UserDetails {
 
     @Column(name = "creatat")
     private LocalDateTime creatAt = LocalDateTime.now();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Cart cart;
 
     public User(String name, String email, String password, UserRole role){
         this.name = name;

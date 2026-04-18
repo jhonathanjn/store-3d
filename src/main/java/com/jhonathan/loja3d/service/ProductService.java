@@ -1,8 +1,8 @@
 package com.jhonathan.loja3d.service;
 
-import com.jhonathan.loja3d.domain.Category;
-import com.jhonathan.loja3d.domain.Product;
-import com.jhonathan.loja3d.domain.TypeProduct;
+import com.jhonathan.loja3d.domain.Product.Category;
+import com.jhonathan.loja3d.domain.Product.Product;
+import com.jhonathan.loja3d.domain.Product.TypeProduct;
 import com.jhonathan.loja3d.dto.ProductDTO;
 import com.jhonathan.loja3d.exception.ResourceNotFoundException;
 import com.jhonathan.loja3d.repository.CategoryRepository;
